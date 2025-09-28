@@ -24,7 +24,7 @@ import Ios from '../../assets/ios.png';
 import WordPress from '../../assets/wordpress.png';
 import MongoDb from '../../assets/mongodb.png';
 import MySql from '../../assets/mysql.png';
-import PostgreSql from '../../assets/PostgreSql.png';
+import PostgreSql from '../../assets/postgreSql.png';
 import GoogleCloud from '../../assets/googlecloud.png';
 import Aws from '../../assets/aws.png';
 import Kubernetes from '../../assets/kubernetes.png';
