@@ -14,7 +14,7 @@ import Twitter from '../../assets/twitter.png';
 const Footer = () => {
   return (
     <footer className="bg-[#191919] text-white py-12 md:py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
         
         {/* Top Section - Links */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-8 md:mb-12">
@@ -24,7 +24,7 @@ const Footer = () => {
             <h4 className="font-semibold text-base sm:text-lg mb-3 md:mb-4">
               Company
             </h4>
-            <ul className="space-y-1 md:space-y-2 text-sm text-white-400">
+            <ul className="space-y-1 md:space-y-2 text-sm text-white-400 leading-relaxed break-words">
               <li><Link to="/" className="hover:text-white">Home</Link></li>
               <li><Link to="/services" className="hover:text-white">Services</Link></li>
               <li><Link to="/portfolio" className="hover:text-white">Portfolio</Link></li>
@@ -39,7 +39,7 @@ const Footer = () => {
             <h4 className="font-semibold text-base sm:text-lg mb-3 md:mb-4">
               Services
             </h4>
-            <ul className="space-y-1 md:space-y-2 text-sm text-white-400">
+            <ul className="space-y-1 md:space-y-2 text-sm text-white-400 leading-relaxed break-words">
               <li><Link to="/services" className="hover:text-white">IT Management Service</Link></li>
               <li><Link to="/services" className="hover:text-white">Data Tracking Security</Link></li>
               <li><Link to="/services" className="hover:text-white">Website Development</Link></li>
@@ -56,7 +56,7 @@ const Footer = () => {
             <h4 className="font-semibold text-base sm:text-xl mb-3 md:mb-4">
               Our Fields
             </h4>
-            <ul className="space-y-1 md:space-y-2 text-sm text-white-400">
+            <ul className="space-y-1 md:space-y-2 text-sm text-white-400 leading-relaxed break-words">
               <li><Link to="/fields" className="hover:text-white">Healthcare</Link></li>
               <li><Link to="/fields" className="hover:text-white">Banks</Link></li>
               <li><Link to="/fields" className="hover:text-white">Logistics</Link></li>
@@ -76,25 +76,25 @@ const Footer = () => {
             <div className="space-y-2 md:space-y-3 text-sm text-white">
   {/* Email */}
   <p className="flex items-center gap-2">
-    <img src={Profile}  alt="Email Icon" />
+  <img src={Profile}  alt="Email Icon" className="w-4 h-4 sm:w-5 sm:h-5 object-contain" />
     itsunicorntech@gmail.com
   </p>
 
   {/* Address */}
   <p className="flex items-center gap-2">
-    <img src={Location}  alt="Location Icon" />
+    <img src={Location}  alt="Location Icon" className="w-4 h-4 sm:w-5 sm:h-5 object-contain" />
     Lig square, Indore, [M.P.] India
   </p>
 
   {/* Phone 1 */}
   <p className="flex items-center gap-2">
-    <img src={Phone}  alt="Phone Icon" />
+    <img src={Phone}  alt="Phone Icon" className="w-4 h-4 sm:w-5 sm:h-5 object-contain" />
     +91-958-957-2990
   </p>
 
   {/* Phone 2 */}
   <p className="flex items-center gap-2">
-    <img src={Phone}  alt="Phone Icon" />
+    <img src={Phone}  alt="Phone Icon" className="w-4 h-4 sm:w-5 sm:h-5 object-contain" />
     +91-963-008-8808
   </p>
 </div>
@@ -106,22 +106,22 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center pt-6 md:pt-8 ">
           {/* Logo */}
           <div className="flex items-center space-x-3 mb-4 md:mb-0">
-            <img src={UnicornLogo} alt="Unicorn Tech Logo" className=":h-[]" />
+            <img src={UnicornLogo} alt="Unicorn Tech Logo"  />
           </div>
 
           {/* Socials */}
           <div className="flex space-x-3 md:space-x-4">
-            <a href="#" className=" flex items-center justify-center"><img src={Facebook} /></a>
-            <a href="#" className=" items-center justify-center"><img src={Insta}/></a>
-            <a href="#" className="items-center justify-center"><img src={Linkedin}/></a>
-            <a href="#" className=" flex items-center justify-center "><img src={Whatsapp}/></a>
-            <a href="#" className=" flex items-center justify-center "><img src={Twitter} /></a>
+            <a href="#" aria-label="Facebook" className="flex items-center justify-center"><img src={Facebook} className="w-6 h-6 sm:w-7 sm:h-7 object-contain" /></a>
+            <a href="#" aria-label="Instagram" className="flex items-center justify-center"><img src={Insta} className="w-6 h-6 sm:w-7 sm:h-7 object-contain"/></a>
+            <a href="#" aria-label="LinkedIn" className="flex items-center justify-center"><img src={Linkedin} className="w-6 h-6 sm:w-7 sm:h-7 object-contain"/></a>
+            <a href="#" aria-label="WhatsApp" className="flex items-center justify-center"><img src={Whatsapp} className="w-6 h-6 sm:w-7 sm:h-7 object-contain"/></a>
+            <a href="#" aria-label="Twitter" className="flex items-center justify-center"><img src={Twitter} className="w-6 h-6 sm:w-7 sm:h-7 object-contain" /></a>
           </div>
         </div>
 
         {/* Bottom Section - Copyright */}
         <div className="flex flex-col md:flex-row justify-between items-center mt-6 md:mt-8 pt-6 md:pt-8 border-t border-gray-800">
-          <p className="text-sm text-white-400 mb-2 md:mb-0 text-center md:text-left">
+          <p className="text-sm text-white-400 mb-2 md:mb-0 text-center md:text-left break-words">
             © UniTech Private Limited {new Date().getFullYear()}. All rights reserved
           </p>
           <div className="flex space-x-4 md:space-x-6 text-sm text-white-400">

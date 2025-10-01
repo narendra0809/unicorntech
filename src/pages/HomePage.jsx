@@ -21,12 +21,13 @@ import portfolio1 from '../assets/portfolio1.png';
 import portfolio2 from '../assets/portfolio2.png';
 import portfolio3 from '../assets/portfolio3.png';
 import portfolio4 from '../assets/portfolio4.png';
-import client1 from '../assets/client1.png';
-import client2 from '../assets/client2.png';
-import client3 from '../assets/client3.png';
-import client4 from '../assets/client4.png';
+// import client1 from '../assets/client1.png';
+// import client2 from '../assets/client2.png';
+// import client3 from '../assets/client3.png';
+// import client4 from '../assets/client4.png';
 import code from '../assets/code.png';
 import TechnologiesShowcase from '../components/common/TechnologiesShowcase';
+import ClientReviews from '../components/common/ClientReviews';
 
 
 const HomePage = () => {
@@ -36,10 +37,10 @@ const HomePage = () => {
             
             {/* Hero Section */}
             <section className="bg-white py-4 sm:py-6 md:py-8 lg:py-6">
-                <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+                <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10">
                     <div className="text-center space-y-4 sm:space-y-6 md:space-y-8">
                         <div className="mx-auto px-2 sm:px-4">
-                            <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-3xl font-bold leading-tight text-center mx-auto max-w-4xl">
+                            <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-3xl font-bold leading-tight text-center mx-auto max-w-4xl 2xl:max-w-5xl">
                                 <span className="text-black">We Build Smarter </span>
                                 <span className="text-[#4587C7]">Web Solutions</span>
                                 <span className="text-[#4587C7]"> — Experts in CRM </span>
@@ -74,7 +75,7 @@ const HomePage = () => {
                                 <img 
                                     src={Figma} 
                                     alt="Dashboard Preview - CRM Solution" 
-                                    className="w-full h-auto rounded-lg sm:rounded-xl md:rounded-2xl"
+                                    className="w-full h-auto object-contain rounded-lg sm:rounded-xl md:rounded-2xl"
                                 />
                                 <div className="absolute inset-0 rounded-lg sm:rounded-xl md:rounded-2xl bg-gradient-to-t from-black/5 to-transparent pointer-events-none"></div>
                             </div>
@@ -85,8 +86,8 @@ const HomePage = () => {
 
             {/* Intro Section */}
             <section className="py-8 sm:py-10 md:py-12 lg:py-16 xl:py-20">
-                <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-                    <div className="grid lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+                <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
                         
                         {/* Left Column - Heading + Small Person Image */}
                         <div className="lg:col-span-1 space-y-3 sm:space-y-4 md:space-y-6">
@@ -104,7 +105,7 @@ const HomePage = () => {
                                 <img 
                                     src={Person} 
                                     alt="Professional working at Unicorn Tech" 
-                                    className="w-full h-full object-cover rounded-lg sm:rounded-xl md:rounded-2xl"
+                                    className="w-full h-auto object-contain rounded-lg sm:rounded-xl md:rounded-2xl"
                                 />
                             </div>
                         </div>
@@ -126,7 +127,7 @@ const HomePage = () => {
                                 <img 
                                     src={Building} 
                                     alt="Modern office building" 
-                                    className="w-full object-cover rounded-lg sm:rounded-xl md:rounded-2xl"
+                                    className="w-full h-auto object-contain rounded-lg sm:rounded-xl md:rounded-2xl"
                                     onError={(e) => {
                                         console.log('Building image failed to load');
                                         e.target.src = Person; // Fallback to person image
@@ -164,7 +165,7 @@ const HomePage = () => {
 
             {/* Technologies Section */}
             <section className="py-6 sm:py-8 md:py-8 lg:py-6 bg-white">
-                <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+                <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10">
                     <div className="text-center mb-6 sm:mb-8 md:mb-12">
                         <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-black mb-4 sm:mb-6 md:mb-8 px-2 sm:px-4">
                             Technologies & Platform we work with
@@ -177,8 +178,8 @@ const HomePage = () => {
 
             {/* Why Choose Us Section */}
             <section className="py-8 sm:py-10 md:py-12 lg:py-15 xl:py-10">
-                <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-                    <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 lg:gap-16 items-center">
+                <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 lg:gap-16 items-center">
                         
                         {/* Left - Image */}
                         <div className="order-2 lg:order-1">
@@ -186,7 +187,7 @@ const HomePage = () => {
                                 <img 
                                     src={Girl} 
                                     alt="Professional team member" 
-                                    className="w-full object-cover rounded-lg sm:rounded-xl md:rounded-2xl"
+                                    className="w-full h-auto object-contain rounded-lg sm:rounded-xl md:rounded-2xl"
                                 />
                             </div>
                         </div>
@@ -205,7 +206,7 @@ const HomePage = () => {
                                         Specialized CRM Expertise
                                     </h3>
                                     <p className="text-[10px] sm:text-xs md:text-sm text-gray-600 leading-relaxed">
-                                        Not just plug-and-play, but personalized to fit your exact business DNA.
+                                       -not just plug-and-play - AI-driven solutions crafted to fit your business DNA.
                                     </p>
                                 </div>
 
@@ -216,7 +217,7 @@ const HomePage = () => {
                                         Unicorn-Tech Mindset
                                     </h3>
                                     <p className="text-[10px] sm:text-xs md:text-sm text-gray-600 leading-relaxed">
-                                        Scalable solutions designed to grow with your business.
+                                       -future-ready, scalable solutions built to fuel your growth.
                                     </p>
                                 </div>
 
@@ -227,7 +228,7 @@ const HomePage = () => {
                                         Agile & Transparent Development
                                     </h3>
                                     <p className="text-[10px] sm:text-xs md:text-sm text-gray-600 leading-relaxed">
-                                        Rapid delivery with zero compromise on quality.
+                                        -rapid delivery, zero compromise on quality.
                                     </p>
                                 </div>
 
@@ -238,7 +239,7 @@ const HomePage = () => {
                                         Global Impact
                                     </h3>
                                     <p className="text-[10px] sm:text-xs md:text-sm text-gray-600 leading-relaxed">
-                                        Serving start-ups, enterprises, and everything in between.
+                                        -from startups to enterprises - solutions built for all.
                                     </p>
                                 </div>
                             </div>
@@ -249,7 +250,7 @@ const HomePage = () => {
 
             {/* Services Section */}
             <section className="py-6 sm:py-8 md:py-10 lg:py-8">
-                <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+                <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10">
                     <div className="text-center mb-6 sm:mb-8 md:mb-12">
                         <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 mb-1 sm:mb-2 md:mb-4">
                             We Provide best services
@@ -264,7 +265,7 @@ const HomePage = () => {
                         {/* Designing */}
                         <div className="text-center max-w-xs px-2 sm:px-4">
                             <div className="mb-2 sm:mb-3 md:mb-4">
-                                <img src={c5} alt="Designing" className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-18 lg:h-18 xl:w-20 xl:h-20 mx-auto" />
+                                <img src={c5} alt="Designing" className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 xl:w-20 xl:h-20 mx-auto object-contain" />
                             </div>
                             <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-gray-900 mb-1 sm:mb-2">Designing</h3>
                             <p className="text-[10px] sm:text-xs md:text-sm text-gray-600 leading-relaxed">
@@ -280,7 +281,7 @@ const HomePage = () => {
                         {/* Development */}
                         <div className="text-center max-w-xs px-2 sm:px-4">
                             <div className="mb-2 sm:mb-3 md:mb-4">
-                                <img src={c6} alt="Development" className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-18 lg:h-18 xl:w-20 xl:h-20 mx-auto" />
+                                <img src={c6} alt="Development" className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 xl:w-20 xl:h-20 mx-auto object-contain" />
                             </div>
                             <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-gray-900 mb-1 sm:mb-2">Development</h3>
                             <p className="text-[10px] sm:text-xs md:text-sm text-gray-600 leading-relaxed">
@@ -296,7 +297,7 @@ const HomePage = () => {
                         {/* Testing */}
                         <div className="text-center max-w-xs px-2 sm:px-4">
                             <div className="mb-2 sm:mb-3 md:mb-4">
-                                <img src={c7} alt="Testing" className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-18 lg:h-18 xl:w-20 xl:h-20 mx-auto" />
+                                <img src={c7} alt="Testing" className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 xl:w-20 xl:h-20 mx-auto object-contain" />
                             </div>
                             <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-gray-900 mb-1 sm:mb-2">Testing</h3>
                             <p className="text-[10px] sm:text-xs md:text-sm text-gray-600 leading-relaxed">
@@ -312,7 +313,7 @@ const HomePage = () => {
                         {/* Deployment */}
                         <div className="text-center max-w-xs px-2 sm:px-4">
                             <div className="mb-2 sm:mb-3 md:mb-4">
-                                <img src={c8} alt="Deployment" className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-18 lg:h-18 xl:w-20 xl:h-20 mx-auto" />
+                                <img src={c8} alt="Deployment" className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 xl:w-20 xl:h-20 mx-auto object-contain" />
                             </div>
                             <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-gray-900 mb-1 sm:mb-2">Deployment</h3>
                             <p className="text-[10px] sm:text-xs md:text-sm text-gray-600 leading-relaxed">
@@ -325,7 +326,7 @@ const HomePage = () => {
 
             {/* Portfolio Section */}
             <section className="py-8 sm:py-10 md:py-12 lg:py-15 xl:py-15">
-                <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+                <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10">
                     <div className="grid lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-6 sm:mb-8 md:mb-5">
                         {/* Left - Heading */}
                         <div className="lg:col-span-1">
@@ -346,18 +347,18 @@ const HomePage = () => {
                     </div>
                     
                     {/* Portfolio Grid - Mobile Optimized */}
-                    <div className="grid md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
                         {/* InnoVista - Top Left */}
                         <div>
                             <div className="p-2 sm:p-3 md:p-4 lg:p-6">
                                 <img 
                                     src={portfolio1} 
                                     alt="InnoVista Dashboard" 
-                                    className="w-full object-cover rounded-md sm:rounded-lg md:rounded-xl mb-2 sm:mb-3 md:mb-4"
+                                    className="w-full h-auto object-contain rounded-md sm:rounded-lg md:rounded-xl mb-2 sm:mb-3 md:mb-4"
                                 />
                                 <div className="flex justify-between items-center">
                                     <div>
-                                        <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-gray-900 mb-1">
+                                        <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-black mb-1">
                                             InnoVista
                                         </h3>
                                     </div>
@@ -374,11 +375,11 @@ const HomePage = () => {
                                 <img 
                                     src={portfolio2} 
                                     alt="Sisyphus Dashboard" 
-                                    className="w-full object-cover rounded-md sm:rounded-lg md:rounded-xl mb-2 sm:mb-3 md:mb-4"
+                                    className="w-full h-auto object-contain rounded-md sm:rounded-lg md:rounded-xl mb-2 sm:mb-3 md:mb-4"
                                 />
                                 <div className="flex justify-between items-center">
                                     <div>
-                                        <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-gray-900 mb-1">
+                                        <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-black mb-1">
                                             Sisyphus™
                                         </h3>
                                     </div>
@@ -395,11 +396,11 @@ const HomePage = () => {
                                 <img 
                                     src={portfolio3} 
                                     alt="InnoVista Analytics" 
-                                    className="w-full object-cover rounded-md sm:rounded-lg md:rounded-xl mb-2 sm:mb-3 md:mb-4"
+                                    className="w-full h-auto object-contain rounded-md sm:rounded-lg md:rounded-xl mb-2 sm:mb-3 md:mb-4"
                                 />
                                 <div className="flex justify-between items-center">
                                     <div>
-                                        <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-gray-900 mb-1">
+                                        <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-black mb-1">
                                             InnoVista
                                         </h3>
                                     </div>
@@ -416,11 +417,11 @@ const HomePage = () => {
                                 <img 
                                     src={portfolio4} 
                                     alt="Sisyphus Analytics" 
-                                    className="w-full object-cover rounded-md sm:rounded-lg md:rounded-xl mb-2 sm:mb-3 md:mb-4"
+                                    className="w-full h-auto object-contain rounded-md sm:rounded-lg md:rounded-xl mb-2 sm:mb-3 md:mb-4"
                                 />
                                 <div className="flex justify-between items-center">
                                     <div>
-                                        <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-gray-900 mb-1">
+                                        <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-black mb-1">
                                             Sisyphus™
                                         </h3>
                                     </div>
@@ -435,7 +436,7 @@ const HomePage = () => {
             </section>
 
             {/* Client Reviews - Mobile Optimized */}
-            <section className="py-8 sm:py-10 md:py-12 lg:py-10">
+            {/* <section className="py-8 sm:py-10 md:py-12 lg:py-10">
                 <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
                     <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8">
                         Clients Reviews
@@ -458,12 +459,13 @@ const HomePage = () => {
                         <p className="text-gray-600 mb-3 sm:mb-4 md:mb-5 pb-3 sm:pb-4 md:pb-5 text-[10px] sm:text-xs md:text-sm lg:text-base">New York, USA</p>
                     </div>
                 </div>
-            </section>
+            </section> */}
+            <ClientReviews />
 
             {/* CTA Section - Mobile Optimized */}
-            <section className="py-6 sm:py-8 md:py-2 lg:py-2">
-                <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-4">
-                    <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center">
+            <section className="py-6 sm:py-8 md:py-2 lg:py-2 mb-10 ">
+                <div className=" max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-4 xl:px-10 bg-[#4587C7]/10  rounded-xl sm:rounded-2xl">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center">
                         
                         {/* Left - Image */}
                         <div className="order-2 lg:order-1">
