@@ -2,7 +2,7 @@ import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 // Lazy load components for better performance
-const WelcomePage = lazy(() => import('./pages/WelcomePage'));
+// const WelcomePage = lazy(() => import('./pages/WelcomePage'));
 const HomePage = lazy(() => import('./pages/HomePage'));
 const ServicePage = lazy(() => import('./pages/ServicePage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
@@ -54,10 +54,10 @@ const App = () => {
         <Suspense fallback={<LoadingSpinner />}>
           <Routes>
             {/* Welcome/Landing Page */}
-            <Route path="/" element={<WelcomePage />} />
+            {/* <Route path="/" element={<WelcomePage />} /> */}
             
             {/* Main Pages */}
-            <Route path="/home" element={<HomePage />} />
+            <Route path="/" element={<HomePage />} />
             <Route path="/services" element={<ServicePage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />

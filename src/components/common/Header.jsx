@@ -12,7 +12,7 @@ const Header = () => {
 
   // Navigation items
   const navItems = [
-    { name: "Home", path: "/home" },
+    { name: "Home", path: "/" },
     { name: "Services", path: "/services" },
     { name: "Portfolio", path: "/portfolio" },
     { name: "About Us", path: "/about" },
@@ -28,7 +28,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-white shadow-md top-0 left-0 w-full z-50">
+    <header className="bg-white shadow-md w-full z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
         <div className="flex justify-between items-center h-16 lg:h-20">
           {/* Logo Section */}
@@ -112,6 +112,18 @@ const MobileMenu = ({ navItems, isActive }) => {
     };
   }, [isOpen]);
 
+  // Prevent body scroll when menu is open
+  React.useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
+
   return (
     <div className="relative mobile-menu-container">
       {/* Mobile Menu Button */}
@@ -138,97 +150,105 @@ const MobileMenu = ({ navItems, isActive }) => {
         </svg>
       </button>
 
-      {/* Dropdown Mobile Menu */}
+      {/* Full Screen Overlay with Blur */}
       {isOpen && (
-        <div className="absolute top-12 right-0 w-80 sm:w-96 bg-[#2a2a2a] shadow-xl rounded-lg z-50 border border-gray-600">
-          {/* Header with Logo */}
-          <div className="flex items-center justify-between p-4 border-b border-gray-600">
-            <div className="flex items-center space-x-2">
-              <img
-                src={UnicornLogo}
-                alt="Unicorn Tech Logo"
-                className="w-auto h-[50px] object-contain"
-              />
-            </div>
-            <button
-              onClick={toggleMenu}
-              className="text-white hover:text-gray-300 transition-colors"
-              aria-label="Close menu"
-            >
-              <span className="text-xs font-medium">Close</span>
-            </button>
-          </div>
+        <>
+          {/* Blur Background Overlay */}
+          <div 
+            className="fixed top-0 left-0 right-0 h-16  backdrop-blur-md z-40"
+            onClick={toggleMenu}
+          ></div>
 
-          {/* Navigation Links */}
-          <nav className="px-4 py-4 space-y-1">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                to={item.path}
-                onClick={toggleMenu}
-                className={`
-                  block py-2 px-2 text-base font-medium transition-all duration-200
-                  ${
-                    isActive(item.path)
-                      ? "text-[#4587C7] font-semibold"
-                      : "text-white hover:text-[#4587C7]"
-                  }
-                `}
-              >
-                {item.name}
-              </Link>
-            ))}
-            
-            {/* Additional Menu Items */}
-            <Link
-              to="/privacy"
-              onClick={toggleMenu}
-              className="block py-2 px-2 text-base font-medium text-white hover:text-[#4587C7] transition-colors"
-            >
-              Privacy Policy
-            </Link>
-            <Link
-              to="/terms"
-              onClick={toggleMenu}
-              className="block py-2 px-2 text-base font-medium text-white hover:text-[#4587C7] transition-colors"
-            >
-              Terms & Condition
-            </Link>
-          </nav>
-
-          {/* Bottom Section */}
-          <div className="p-4 border-t border-gray-600">
-            <div className="flex justify-between items-center">
-              {/* Get an Estimate Button */}
+          {/* Dropdown Mobile Menu */}
+          <div className="fixed rounded-xl top-3 left-2 right-2 bg-[#2f2f2f]/96 shadow-xl z-50">
+            {/* Header with Logo and Close */}
+            <div className="flex items-center justify-between p-4 border-b border-gray-600">
+              <div className="flex items-center space-x-2">
+                <img
+                  src={UnicornLogo}
+                  alt="Unicorn Tech Logo"
+                  className="w-auto h-[50px] object-contain"
+                />
+              </div>
               <button
-                onClick={handleEstimateClick}
-                className="bg-black text-white py-2 px-3 rounded-full text-xs font-medium hover:bg-gray-800 transition-colors"
+                onClick={toggleMenu}
+                className=" bg-black text-white  px-5 py-1 rounded-full"
+                aria-label="Close menu"
               >
-                Get an Estimated
+                <span className="text-lg  font-medium ">Close</span>
               </button>
+            </div>
+
+            {/* Navigation Links */}
+            <nav className="px-6 py-4 space-y-1">
+              {navItems.map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.path}
+                  onClick={toggleMenu}
+                  className={`
+                    block py-3 px-3 text-base font-medium transition-all duration-200 rounded-md
+                    ${
+                      isActive(item.path)
+                        ? "text-[#4587C7] font-semibold "
+                        : "text-white hover:text-[#4587C7] hover:bg-gray-700"
+                    }
+                  `}
+                >
+                  {item.name}
+                </Link>
+              ))}
               
-              {/* Social Icons */}
-              <div className="flex space-x-2">
-                <a href="#" aria-label="Facebook" className="w-6 h-6 flex items-center justify-center hover:bg-gray-200 transition-colors">
-                  <img src={Facebook} />
-                </a>
-                <a href="#" aria-label="Instagram" className="w-6 h-6  flex items-center justify-center hover:bg-gray-200 transition-colors">
-                   <img src={Instagram} />
-                 
-                </a>
-                <a href="#" aria-label="LinkedIn" className="w-6 h-6 flex items-center justify-center hover:bg-gray-200 transition-colors">
-                   <img src={LinkedIn} />
-                </a>
-                <a href="#" aria-label="WhatsApp" className="w-6 h-6  flex items-center justify-center hover:bg-gray-200 transition-colors">
-                  <img src={Whatsapp} />
-                </a>
-                <a href="#" aria-label="Twitter" className="w-6 h-6 flex items-center justify-center hover:bg-gray-200 transition-colors">
-                  <img src={Twitter} />
-                </a>
+              {/* Additional Menu Items */}
+              <Link
+                to="/privacy"
+                onClick={toggleMenu}
+                className="block py-3 px-3 text-base font-medium text-white hover:text-[#4587C7] hover:bg-gray-700 transition-colors rounded-md"
+              >
+                Privacy Policy
+              </Link>
+              <Link
+                to="/terms"
+                onClick={toggleMenu}
+                className="block py-3 px-3 text-base font-medium text-white hover:text-[#4587C7] hover:bg-gray-700 transition-colors rounded-md"
+              >
+                Terms & Condition
+              </Link>
+            </nav>
+
+            {/* Bottom Section */}
+            <div className="p-6 border-t border-gray-600">
+              <div className="flex justify-between items-center">
+                {/* Get an Estimate Button */}
+                <button
+                  onClick={handleEstimateClick}
+                  className="bg-black text-white py-1.5 px-3 rounded-full text-sm font-arial hover:bg-gray-200 transition-colors"
+                >
+                  Get an Estimate
+                </button>
+                
+                {/* Social Icons */}
+                <div className="flex space-x-2">
+                  <a href="#" aria-label="Facebook" className="hover:opacity-80 transition-opacity">
+                    <img src={Facebook} className="w-7 h-7" alt="Facebook" />
+                  </a>
+                  <a href="#" aria-label="Instagram" className="hover:opacity-80 transition-opacity">
+                    <img src={Instagram} className="w-7 h-7" alt="Instagram" />
+                  </a>
+                  <a href="#" aria-label="LinkedIn" className="hover:opacity-80 transition-opacity">
+                    <img src={LinkedIn} className="w-7 h-7" alt="LinkedIn" />
+                  </a>
+                  <a href="#" aria-label="WhatsApp" className="hover:opacity-80 transition-opacity">
+                    <img src={Whatsapp} className="w-7 h-7" alt="WhatsApp" />
+                  </a>
+                  <a href="#" aria-label="Twitter" className="hover:opacity-80 transition-opacity">
+                    <img src={Twitter} className="w-7 h-7" alt="Twitter" />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </>
       )}
     </div>
   );
