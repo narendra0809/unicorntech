@@ -7,9 +7,9 @@ const WelcomePage = () => {
 
     }
     return(
-        <div className='flex h-screen items-center justify-center  ' style={{backgroundColor:'#191919'}} onClick={handleFunc}>
+        <div className='flex h-screen items-center justify-center px-4' style={{backgroundColor:'#191919'}} onClick={handleFunc}>
        
-            <img src={UnicornLogo} className='w-[250px] sm:w-[280px] md:w-[300px]' />
+            <img src={UnicornLogo} alt="Unicorn Tech Logo" className='w-[200px] sm:w-[250px] md:w-[280px] lg:w-[300px] xl:w-[320px] h-auto object-contain cursor-pointer' />
         </div>
     )
 }

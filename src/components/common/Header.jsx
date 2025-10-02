@@ -1,6 +1,11 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import UnicornLogo from "../../assets/UnicornLogo.png";
+import Facebook from '../../assets/fcbk.png';
+import Instagram from '../../assets/insta.png';
+import LinkedIn from '../../assets/linked.png';
+import Whatsapp from '../../assets/wtsp.png';
+import Twitter from '../../assets/twit.png';
 
 const Header = () => {
   const location = useLocation();
@@ -133,46 +138,97 @@ const MobileMenu = ({ navItems, isActive }) => {
         </svg>
       </button>
 
-      {/* Dropdown Panel */}
+      {/* Dropdown Mobile Menu */}
       {isOpen && (
-        <div className="absolute top-12 right-0 w-64 sm:w-72 bg-white shadow-xl rounded-lg z-50 border border-gray-200">
-            <div className="flex flex-col">
-              {/* Navigation Links */}
-              <nav className="px-4 py-4 space-y-2">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.name}
-                    to={item.path}
-                    onClick={toggleMenu}
-                    className={`
-                      block py-3 px-3 rounded-lg text-base font-medium transition-all duration-200
-                      ${
-                        isActive(item.path)
-                          ? "text-black bg-gray-100 font-semibold"
-                          : "text-[#797979] hover:text-black hover:bg-gray-50"
-                      }
-                    `}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
+        <div className="absolute top-12 right-0 w-80 sm:w-96 bg-[#2a2a2a] shadow-xl rounded-lg z-50 border border-gray-600">
+          {/* Header with Logo */}
+          <div className="flex items-center justify-between p-4 border-b border-gray-600">
+            <div className="flex items-center space-x-2">
+              <img
+                src={UnicornLogo}
+                alt="Unicorn Tech Logo"
+                className="w-auto h-[50px] object-contain"
+              />
+            </div>
+            <button
+              onClick={toggleMenu}
+              className="text-white hover:text-gray-300 transition-colors"
+              aria-label="Close menu"
+            >
+              <span className="text-xs font-medium">Close</span>
+            </button>
+          </div>
 
-                {/* Mobile Get an Estimate Button */}
-                <div className="pt-3 border-t border-gray-100 mt-3">
-                  <button
-                    onClick={handleEstimateClick}
-                    className="
-                      w-full bg-black text-white py-3 px-4 rounded-full text-sm font-medium
-                      hover:bg-gray-800 transition-colors duration-200
-                      focus:outline-none focus:ring-2 focus:ring-black focus:ring-opacity-50
-                    "
-                  >
-                    Get an Estimate
-                  </button>
-                </div>
-              </nav>
+          {/* Navigation Links */}
+          <nav className="px-4 py-4 space-y-1">
+            {navItems.map((item) => (
+              <Link
+                key={item.name}
+                to={item.path}
+                onClick={toggleMenu}
+                className={`
+                  block py-2 px-2 text-base font-medium transition-all duration-200
+                  ${
+                    isActive(item.path)
+                      ? "text-[#4587C7] font-semibold"
+                      : "text-white hover:text-[#4587C7]"
+                  }
+                `}
+              >
+                {item.name}
+              </Link>
+            ))}
+            
+            {/* Additional Menu Items */}
+            <Link
+              to="/privacy"
+              onClick={toggleMenu}
+              className="block py-2 px-2 text-base font-medium text-white hover:text-[#4587C7] transition-colors"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              to="/terms"
+              onClick={toggleMenu}
+              className="block py-2 px-2 text-base font-medium text-white hover:text-[#4587C7] transition-colors"
+            >
+              Terms & Condition
+            </Link>
+          </nav>
+
+          {/* Bottom Section */}
+          <div className="p-4 border-t border-gray-600">
+            <div className="flex justify-between items-center">
+              {/* Get an Estimate Button */}
+              <button
+                onClick={handleEstimateClick}
+                className="bg-black text-white py-2 px-3 rounded-full text-xs font-medium hover:bg-gray-800 transition-colors"
+              >
+                Get an Estimated
+              </button>
+              
+              {/* Social Icons */}
+              <div className="flex space-x-2">
+                <a href="#" aria-label="Facebook" className="w-6 h-6 flex items-center justify-center hover:bg-gray-200 transition-colors">
+                  <img src={Facebook} />
+                </a>
+                <a href="#" aria-label="Instagram" className="w-6 h-6  flex items-center justify-center hover:bg-gray-200 transition-colors">
+                   <img src={Instagram} />
+                 
+                </a>
+                <a href="#" aria-label="LinkedIn" className="w-6 h-6 flex items-center justify-center hover:bg-gray-200 transition-colors">
+                   <img src={LinkedIn} />
+                </a>
+                <a href="#" aria-label="WhatsApp" className="w-6 h-6  flex items-center justify-center hover:bg-gray-200 transition-colors">
+                  <img src={Whatsapp} />
+                </a>
+                <a href="#" aria-label="Twitter" className="w-6 h-6 flex items-center justify-center hover:bg-gray-200 transition-colors">
+                  <img src={Twitter} />
+                </a>
+              </div>
             </div>
           </div>
+        </div>
       )}
     </div>
   );

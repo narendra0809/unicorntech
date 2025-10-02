@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
 import ClientReviews from '../components/common/ClientReviews';
-import WebDesign from '../assets/webdev.png';
+import WebDesign from '../assets/webdesign.png';
 import Brand from '../assets/brand.png';
 import AppDev from '../assets/appdevelopment.png';
 import GraphicDesigner from '../assets/graphicdesigning.png';
@@ -79,7 +79,7 @@ const ServicePage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-12 items-center">
             {/* Left - Heading */}
             <div className="text-center lg:text-left">
-              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-black leading-tight mb-3 sm:mb-4 md:mb-6">
+              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-4xl font-bold text-black leading-tight mb-3 sm:mb-4 md:mb-6">
                 Future-Ready <span className="text-[#4587C7]">IT Services</span>
                 <br className="hidden sm:block" />
                 <span className="block sm:inline"> for Your Business</span>
