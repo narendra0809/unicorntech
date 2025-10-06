@@ -36,6 +36,7 @@ const ServicePage = lazy(() => import('./pages/ServicePage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
 const CaseStudyPage = lazy(() => import('./pages/CaseStudyPage'));
+
 const PortfolioPage = lazy(() => import('./pages/PortfolioPage'));
 
 // Enhanced Loading component with company branding
@@ -92,6 +93,8 @@ const App = () => {
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/portfolio" element={<PortfolioPage />} />
             <Route path="/case-studies" element={<CaseStudyPage />} />
+            <Route path="/case-studies/:id" element={<CaseStudyPage />} />
+
             
             {/* Backward compatibility redirects */}
             <Route path="/HomePage" element={<Navigate to="/home" replace />} />

@@ -1,198 +1,162 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
-import Computer from '../assets/computer.png';
 import ContactInfo from '../components/common/ContactInfo';
+import Computer from '../assets/computer.png';
+import arrow from '../assets/blueArrow.png';
 import c1 from '../assets/design.png';
 import c2 from '../assets/development.png';
 import c3 from '../assets/testing.png';
 import c4 from '../assets/deploy.png';
-import arrow from '../assets/blueArrow.png';
-import Platform from '../assets/platform.png'
+import platformIcon from '../assets/platform.png'; // Platform icon for all info sections
+import api from '../api'; // Axios instance
 
+const imgUrl = (path) => {
+  if (!path) return null;
+  const base = (import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000').replace('/api', '');
+  return `${base}/storage/${path}`;
+};
+
+// ...existing code...
 const CaseStudyPage = () => {
-    const sections = [
-        {
-            icon: Platform,
-            title: 'Platform',
-            description: 'Web and CRM development'
-        },
-        {
-            icon:Platform,
-            title: 'Services',
-            description: 'Web development Trading Tantra'
-        },
-        {
-            icon: Platform,
-            title: 'Industry',
-            description: 'Fintech Company'
-        },
-        {
-            icon: Platform,
-            title: 'Timeline',
-            description: '6 Month'
-        },
-        {
-            icon: Platform,
-            title: 'Tech Stack',
-            description: 'React, Node Js, Google cloud, MongoDB, AWS'
-        }
-    ];
+  const { id } = useParams();
+  const [caseStudy, setCaseStudy] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-    const processSteps = [
-        {
-            icon: c1,
-            title: 'Designing',
-            description: 'Design your product from scratch'
-        },
-        {
-            icon: c2,
-            title: 'Development',
-            description: 'Developed your product with bug-free deployment'
-        },
-        {
-            icon: c3,
-            title: 'Testing',
-            description: 'Our organization ensures automation testing with maintenance'
-        },
-        {
-            icon: c4,
-            title: 'Deployment',
-            description: 'We deliver our product on given timeline'
-        }
-    ];
+  // For image slider
+  const [currentSlide, setCurrentSlide] = useState(0);
 
-    return (
-        <div className="min-h-screen bg-white">
-            <Header />
-            
-            {/* Hero Section */}
-            <section className="py-8 sm:py-10 md:py-12 lg:py-16 xl:py-20 bg-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12 items-start mb-8 sm:mb-10 md:mb-12 lg:mb-16">
-                        
-                        {/* Left - Heading */}
-                        <div>
-                            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-bold text-black leading-tight">
-                                Trading Tantra<br />
-                                case study
-                            </h1>
-                        </div>
-                        
-                        {/* Right - Paragraph */}
-                        <div>
-                            <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed">
-                                Stock traders and investors face information overload—thousands of stocks, rapidly changing prices, technical signals, and news. Traditional screeners often lack automation, intelligence, or real-time responsiveness.
-                            </p>
-                        </div>
-                    </div>
-                    
-                    {/* Computer Image - Centered */}
-                    <div className="p-6 sm:p-8 md:p-10 lg:p-12 mb-8 sm:mb-10 md:mb-12 ">
-                        <div className="w-full bg-[#edebe6] rounded-xl p-4 sm:p-6 md:p-8">
-                            <div>
-                                <img src={Computer} alt="Trading Tantra Dashboard" className="w-full h-auto object-contain"/>
-                            </div>
-                            {/* Pagination dots */}
-                            <div className="flex justify-center gap-2 mt-6">
-                                <div className="w-12 h-1 bg-blue-500 rounded-full"></div>
-                                <div className="w-12 h-1 bg-gray-300 rounded-full"></div>
-                                <div className="w-12 h-1 bg-gray-300 rounded-full"></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    {/* Info Sections - Single Row */}
-                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6 md:gap-8">
-                        {sections.map((section, index) => (
-                            <div key={index} className="text-center lg:text-left">
-                                {/* Icon */}
-                                <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl flex items-center justify-center mx-auto lg:mx-0 mb-3 sm:mb-4">
-                                    <img src={Platform} alt="Platform Icon" className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 object-contain" />
-                                </div>
-                                
-                                {/* Title */}
-                                <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-black mb-2">
-                                    {section.title}
-                                </h3>
-                                
-                                {/* Description */}
-                                <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
-                                    {section.description}
-                                </p>
-                            </div>
-                        ))}
-                    </div>
+  const processSteps = [
+    { icon: c1, title: 'Designing', description: 'Design your product from scratch' },
+    { icon: c2, title: 'Development', description: 'Developed your product with bug-free deployment' },
+    { icon: c3, title: 'Testing', description: 'Our organization ensures automation testing with maintenance' },
+    { icon: c4, title: 'Deployment', description: 'We deliver our product on given timeline' }
+  ];
+
+  useEffect(() => {
+    api.get(`/casestudies/${id}`)
+      .then(res => {
+        setCaseStudy(res.data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error(err);
+        setLoading(false);
+      });
+  }, [id]);
+
+  // Auto-slide logic
+  useEffect(() => {
+    if (!caseStudy?.images || caseStudy.images.length < 2) return;
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % caseStudy.images.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [caseStudy]);
+
+  if (loading) return <p className="text-center mt-20">Loading case study...</p>;
+  if (!caseStudy) return <p className="text-center mt-20">Case study not found</p>;
+
+  return (
+    <div className="min-h-screen bg-white">
+      <Header />
+
+      {/* Hero Section */}
+      <section className="py-8 sm:py-10 md:py-12 lg:py-16 xl:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12 items-start mb-8 sm:mb-10 md:mb-12 lg:mb-16">
+            <div>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold text-black leading-tight">
+                {caseStudy.title}
+              </h1>
+            </div>
+            <div>
+              <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed">
+                {caseStudy.description}
+              </p>
+            </div>
+          </div>
+
+          {/* Images Slider */}
+          <div className="p-6 sm:p-8 md:p-10 lg:p-12 mb-8 sm:mb-10 md:mb-12">
+            <div className="w-full bg-[#edebe6] rounded-xl p-4 sm:p-6 md:p-8 flex items-center justify-center min-h-[200px]">
+              {caseStudy.images?.length > 0 && (
+                <img
+                  src={imgUrl(caseStudy.images[currentSlide])}
+                  alt={`Slide ${currentSlide + 1}`}
+                  className="w-full h-auto object-contain transition-all duration-500"
+                />
+              )}
+            </div>
+            {/* Pagination dots */}
+            <div className="flex justify-center gap-2 mt-6">
+              {caseStudy.images?.map((_, idx) => (
+                <div
+                  key={idx}
+                  className={`w-12 h-1 rounded-full ${idx === currentSlide ? 'bg-blue-500' : 'bg-gray-300'}`}
+                ></div>
+              ))}
+            </div>
+          </div>
+
+          {/* Info Sections */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6 md:gap-8">
+            {[
+              { title: 'Platform', value: caseStudy.platform },
+              { title: 'Services', value: caseStudy.services },
+              { title: 'Industry', value: caseStudy.industry },
+              { title: 'Timeline', value: caseStudy.timeline },
+              { title: 'Tech Stack', value: caseStudy.techstack?.join(', ') }
+            ].map((section, idx) => (
+              <div key={idx} className="text-center lg:text-left">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl flex items-center justify-center mx-auto lg:mx-0 mb-3 sm:mb-4">
+                  <img src={platformIcon} alt={`${section.title} Icon`} className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 object-contain" />
                 </div>
-            </section>
-            
-            {/* Project Details Section */}
-            <section className="py-8 sm:py-10 md:py-12 lg:py-16 bg-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
-                    <div className="space-y-8 sm:space-y-10 md:space-y-12">
-                        
-                        {/* Project Overview */}
-                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 items-start">
-                            <div className="lg:col-span-1">
-                                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-black">
-                                    Project<br />Overview :
-                                </h2>
-                            </div>
-                            <div className="lg:col-span-2">
-                                <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed">
-                                    Unicorn Tech is a trusted IT partner specializing in custom web development and CRM solutions. From startups to global enterprises, we empower industries like healthcare, retail, finance, and education with technology that drives measurable growth and efficiency.
-                                </p>
-                            </div>
-                        </div>
-                        
-                        {/* Challenge */}
-                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 items-start">
-                            <div className="lg:col-span-1">
-                                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-black">
-                                    Challenge :
-                                </h2>
-                            </div>
-                            <div className="lg:col-span-2">
-                                <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed">
-                                    Unicorn Tech is a trusted IT partner specializing in custom web development and CRM solutions. From startups to global enterprises, we empower industries like healthcare, retail, finance, and education with technology that drives measurable growth and efficiency.
-                                </p>
-                            </div>
-                        </div>
-                        
-                        {/* Solution */}
-                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 items-start">
-                            <div className="lg:col-span-1">
-                                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-black">
-                                    Solution :
-                                </h2>
-                            </div>
-                            <div className="lg:col-span-2">
-                                <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed">
-                                    Unicorn Tech is a trusted IT partner specializing in custom web development and CRM solutions. From startups to global enterprises, we empower industries like healthcare, retail, finance, and education with technology that drives measurable growth and efficiency.
-                                </p>
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </section>
+                <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-black mb-2">{section.title}</h3>
+                <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">{section.value}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            {/* Project Process Section */}
+      {/* Project Details */}
+      <section className="py-8 sm:py-10 md:py-12 lg:py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 space-y-8">
+          {[
+            { title: 'Project Overview', content: caseStudy.project_overview },
+            { title: 'Challenge', content: caseStudy.challenges },
+            { title: 'Solution', content: caseStudy.solution }
+          ].map((section, idx) => (
+            <div key={idx} className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 items-start">
+              <div className="lg:col-span-1">
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-black">{section.title} :</h2>
+              </div>
+              <div className="lg:col-span-2">
+                <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed">{section.content}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+        {/* Project Process Section */}
             <section className="py-8 sm:py-12 md:py-16 lg:py-20 bg-[#DEE8F4]  sm:m-5 md:m-5 m-2 rounded-xl">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
                     
                     {/* Header - Two Column Layout */}
-                    <div className="mb-12 sm:mb-16 md:mb-20 lg:mb-24 ">
+                    {/* <div className="mb-12 sm:mb-16 md:mb-20 lg:mb-24 ">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 lg:gap-16">
-                            {/* Left Column */}
+                           
                             <div>
                                 <p className="text-xs sm:text-sm text-gray-500 mb-2 sm:mb-3">Project Name</p>
                                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-black">
-                                    Trading Tantra
+                                    {caseStudy.title}
                                 </h2>
                             </div>
                             
-                            {/* Right Column */}
+                           
                             <div>
                                 <p className="text-xs sm:text-sm text-gray-500 mb-2 sm:mb-3">About</p>
                                 <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed">
@@ -200,7 +164,7 @@ const CaseStudyPage = () => {
                                 </p>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
 
                     {/* Project Process Title */}
                     <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center text-black mb-10 sm:mb-12 md:mb-16 lg:mb-20">

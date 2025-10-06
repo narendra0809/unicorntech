@@ -33,7 +33,7 @@ const Header = () => {
         <div className="flex justify-between items-center h-16 lg:h-20">
           {/* Logo Section */}
           <div className="flex items-center flex-shrink-0">
-            <Link to="/home" className="flex items-center space-x-2">
+            <Link to="/" className="flex items-center space-x-2">
               <img
                 src={UnicornLogo}
                 alt="Unicorn Tech Logo"

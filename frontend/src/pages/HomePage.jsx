@@ -29,7 +29,7 @@ const HomePage = () => {
   // Helper to get image URL
   const imgUrl = (path) => {
     if (!path) return null;
-    const base = (import.meta.env.REACT_APP_API_URL || 'http://127.0.0.1:8000').replace('/api', '');
+    const base = (import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000').replace('/api', '');
     return `${base}/storage/${path}`;
   };
 

@@ -4,7 +4,7 @@ import api from '../../../api';
 import { useNavigate, useParams } from 'react-router-dom';
 
 function imgUrl(path) {
-  const base = import.meta.env.REACT_APP_API_URL?.replace('/api','') || 'http://127.0.0.1:8000';
+  const base = import.meta.env.VITE_API_URL?.replace('/api','') || 'http://127.0.0.1:8000';
   return `${base}/storage/${path}`;
 }
 
