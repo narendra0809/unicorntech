@@ -25,6 +25,7 @@ export default function AdminLayout() {
           <NavLink to="/admin/casestudies">Case Studies</NavLink>
           <NavLink to="/admin/ourteam">Our Team</NavLink>
           <NavLink to="/admin/clientreviews">Client Reviews</NavLink>
+          <NavLink to="/admin/contacts">Contacts</NavLink>
         </nav>
 
         <div className="absolute bottom-6 left-4">

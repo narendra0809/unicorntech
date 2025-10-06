@@ -7,6 +7,8 @@ import Login from './pages/admin/Login';
 import AdminLayout from './pages/admin/Layout';
 import ProtectedRoute from './components/ProtectedRoute';
 
+//contact
+import ContactList from './pages/admin/Contacts/List';
 // categories
 import PCatList from './pages/admin/PCategories/List';
 import PCatCreate from './pages/admin/PCategories/Create';
@@ -112,7 +114,9 @@ const App = () => {
           </ProtectedRoute>
         }>
           <Route index element={<div>Welcome Admin</div>} />
-
+          {/* contact */}
+          <Route path="contacts" element={<ContactList/>} />
+          {/* portfolio categories */}
           <Route path="portfolio-categories" element={<PCatList/>} />
           <Route path="portfolio-categories/create" element={<PCatCreate/>} />
           <Route path="portfolio-categories/edit/:id" element={<PCatEdit/>} />

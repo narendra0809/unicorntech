@@ -25,4 +25,9 @@ class ContactController extends Controller
             'data'    => $contact
         ], 201);
     }
+    public function index(): JsonResponse
+    {
+        $contacts = Contact::all();
+        return response()->json($contacts);
+    }
 }
